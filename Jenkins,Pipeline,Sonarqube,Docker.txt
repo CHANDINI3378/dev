@@ -1,0 +1,164 @@
+ec2 created - ubuntu
+t2-large
+ssh,http,https allow
+connectd to git bash
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+    https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+	
+	 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+	
+	sudo apt-get update
+	sudo apt-get install fontconfig openjdk-17-jre
+	sudo apt-get install jenkins
+	 systemctl status jenkins
+	 public ip address -> ec2 instance
+	 select instance - security - inbound rules - security groups open - security groups id open -edit inbound rules - add rules - port numer - Anywhere IpV4 - save rules
+	 running instance public ip copy
+	 goto chrome public ip :8080 past and enter
+	  sudo cat  /var/lib/jenkins/secrets/initialAdminPassword
+	 password copy and paste jenkins box past and continue
+	 install suggested pluggins enter two times
+	 User name -chandini
+	 password- chandini@123
+	 full name - devera
+	 E-mail - chandureddyboyina@gmail.com
+	 
+	 
+	INSTALL DOCKER
+	
+	  sudo apt-get update
+	  sudo apt-get install docker.io -y
+	  sudo usermod -aG docker ubuntu
+	   newgrp docker
+	   sudo chmod 777 /var/run/docker.sock
+	    docker pull sonarqube
+		docker run -d -p 9000:9000 sonarqube
+		public ip address -> ec2 instance
+		select instance - security - inbound rules - security groups open - security groups id open -edit inbound rules - add rules - port numer - Anywhere IpV4 - save rules
+		goto chrome public ip :9000 past and enter
+		 LOGINTO SONARQUBE
+		 
+		 user name - admin
+		 password - admin
+		 
+		 update password
+		 
+		 user name - admin
+		 password - Chandini@123
+		 
+		  login to Jenkins
+		  
+		  STEP-3
+		  
+		  3A ---> Install pluggin
+		  
+		  Goto manage Jenkins -> pluggins -> Avilable Pluggins -> Install pluggins
+		  
+		  goto search bar Eclipse Temurin Installer and install
+		  
+		  Sonarqube scanner and install
+		  
+	3B -> Configure Java and maven
+
+          goto manage Jenkins -> tools -> Install JDK(17) and Maven(3.6.0) -> Click apply and Save
+
+            JDK
+
+        name - jdk17
+
+        Instll - adoptium.net
+        version - jdk-17.0.8.1+1
+
+
+             MAVEN 
+		name - maven3
+
+       Install - Apache
+       version - 3.6.0
+     Apply and Save
+
+  
+  3C -> Create a Job
+  
+    select new 
+
+
+       Item Name - petstore
+       pipeline select
+       click ok
+	   
+		select pipeline
+
+   PIPELINE SCRIPT
+
+ pipeline{
+   agent any
+   tools {
+ jdk 'jdk17'
+ maven 'maven3'
+ }
+ stages{
+ stage ('clean Workspace'){
+ steps{
+ cleanWs()
+ }
+ }
+ stage ('checkout scm') {
+ steps {
+ git ' https://github.com/Venn1991/jpetstore-6.git'
+ }
+ }
+ stage ('maven compile') {
+ steps {
+ sh 'mvn clean compile'
+ }
+ }
+ stage ('maven Test') {
+ steps {
+ sh 'mvn test'
+ }
+ }
+ }
+}  
+stage view
+
+
+   STEP-4 -> configure Sonar Server in Manage jenkins
+
+   goto sonar dashboard
+
+    Administration
+
+      security
+       users
+
+    tokens
+
+     select 3dots -> update tokens
+      
+Create a Token
+
+   Name - Sonar-token
+    Generate
+
+    Link copy token
+	
+	Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add 
+Secret Text. It should look like this
+
+Dashboard -> Manage Jenkins -> Credentials -> System -> Global credentials
+
+    New Credentials
+	
+	 Secrete - Sonarqube url paste
+	 ID - Sonar-token
+	 Description - Sonar-token
+	 Create
+	 
+	 Now, go to Dashboard → Manage Jenkins → System and Add like the 
+below image.
+
+
+	
