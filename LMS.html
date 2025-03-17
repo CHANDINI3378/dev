@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speshway LMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        aside nav ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        aside nav ul li a:hover {
+            background-color: #1e40af;
+            border-radius: 5px;
+        }
+        button {
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        /* Hide dashboard initially */
+        #dashboard {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Welcome Page -->
+    <div id="welcome" class="flex items-center justify-center h-screen bg-gradient-to-r from-blue-700 to-blue-900 text-white">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Speshway Solutions </h1>
+            <h2>Start Learning Using LMS Portal</h2>
+            <p class="text-lg mb-6">Empowering learning with technology</p>
+            <button onclick="showDashboard()" class="px-6 py-3 bg-green-500 rounded-lg text-white text-lg font-semibold hover:bg-green-600 transition duration-300">
+                Start Learning
+            </button>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-blue-900 text-white p-5 space-y-6">
+            <h1 class="text-2xl font-bold">Speshway LMS</h1>
+            <nav>
+                <ul>
+                    <li class="p-2 hover:bg-blue-700 rounded"><a href="#">Dashboard</a></li>
+                    <li class="p-2 hover:bg-blue-700 rounded"><a href="#">Courses</a></li>
+                    <li class="p-2 hover:bg-blue-700 rounded"><a href="#">Assignments</a></li>
+                    <li class="p-2 hover:bg-blue-700 rounded"><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Your Courses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Course 1</h3>
+                    <p class="text-gray-600">Introduction to HTML & CSS</p>
+                    <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Course</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Course 2</h3>
+                    <p class="text-gray-600">JavaScript Basics</p>
+                    <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Course</button>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-semibold">Course 3</h3>
+                    <p class="text-gray-600">Tailwind CSS Guide</p>
+                    <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded">View Course</button>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="mt-6 bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-semibold">Upload Java Question Paper</h3>
+                <form class="mt-2">
+                    <input type="file" class="border p-2 rounded">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-green-600 text-white rounded">Upload</button>
+                </form>
+            </div>
+
+            <div class="mt-6 bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-semibold">Upload DevOps Question Paper</h3>
+                <form class="mt-2">
+                    <input type="file" class="border p-2 rounded">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-green-600 text-white rounded">Upload</button>
+                </form>
+            </div>
+
+            <!-- Submit Answer Sheets -->
+            <div class="mt-6 bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-semibold">Submit Java Answer Sheet</h3>
+                <form class="mt-2">
+                    <input type="file" class="border p-2 rounded">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded">Submit</button>
+                </form>
+            </div>
+
+            <div class="mt-6 bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-semibold">Submit DevOps Answer Sheet</h3>
+                <form class="mt-2">
+                    <input type="file" class="border p-2 rounded">
+                    <button type="submit" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded">Submit</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript to Switch Pages -->
+    <script>
+        function showDashboard() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>
